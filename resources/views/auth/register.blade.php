@@ -22,6 +22,7 @@ html, body {
     color: white;
     text-align: center;
     padding: 15px 0;
+        margin-top: 20px;
     font-size: 1rem; /* Texto más grande */
     position: relative; /* No es fixed, para que no tape contenido */
     bottom: 0;
