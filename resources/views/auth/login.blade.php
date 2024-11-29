@@ -1,73 +1,168 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+<style>
+    /* Fondo general */
+    body {
+        background-color: #b0d4de;
+    }
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+    /* Contenedor principal */
+    .login-wrapper {
+        min-height: calc(100vh - 56px); /* Altura completa menos el navbar */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+    .login-container {
+        display: flex;
+        background-color: #f5f5f5; /* Fondo del contenedor */
+        border-radius: 20px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        width: 1000px; /* Más ancho */
+        height: 700px; /* Más alto */
+    }
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+    /* Estilo del formulario */
+    .form-container {
+        background-color: #d4e9f2; /* Fondo del formulario */
+        width: 50%;
+        padding: 50px; /* Más espacio interno */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+    .form-container img {
+        width: 180px; /* Logo más grande */
+        height: auto;
+        margin-bottom: 20px;
+    }
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+    .form-container h1 {
+        font-size: 2.2rem; /* Título más grande */
+        color: #1565c0;
+        margin-bottom: 30px;
+    }
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+    .form-container label {
+        color: #333;
+        font-weight: bold;
+        font-size: 1rem; /* Texto más grande */
+    }
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+    .form-container input {
+        width: 100%;
+        padding: 15px; /* Inputs más grandes */
+        margin: 15px 0;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #f8f8f8;
+        font-size: 1rem; /* Texto dentro del input más grande */
+    }
 
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+    .form-container .btn-primary {
+        width: 100%;
+        padding: 15px; /* Botón más grande */
+        background-color: #1565c0;
+        border: none;
+        color: white;
+        font-size: 1.2rem; /* Texto del botón más grande */
+        border-radius: 10px;
+        margin-top: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+    .form-container .btn-primary:hover {
+        background-color: #0d47a1;
+    }
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
+    .form-container a {
+        display: block;
+        margin-top: 10px;
+        color: #d32f2f;
+        text-align: right;
+        font-size: 0.9rem;
+        font-weight: bold;
+        text-decoration: none;
+    }
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+    .form-container a:hover {
+        text-decoration: underline;
+    }
+
+    /* Imagen de autos */
+    .parking-image-container {
+        width: 100%;
+        background-color: #e7f4f8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+    /* Footer */
+    .footer {
+        background-color: #1565c0; /* Color del footer */
+        color: white;
+        text-align: center;
+        padding: 15px 0;
+        margin-top: 20px;
+        font-size: 1rem; /* Texto más grande */
+    }
+
+    .footer a {
+        color: #ffd600; /* Contraste con el fondo */
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .footer a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="login-wrapper">
+    <div class="login-container">
+        <div class="form-container">
+            <img src="{{ asset('img/logo.png') }}" alt="Logo">
+            <h1>Login</h1>
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+                <label for="email">Usuario:</label>
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                @error('email')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+
+                <label for="password">Contraseña:</label>
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+
+                <a href="{{ route('password.request') }}">¿Olvidaste tu contraseña?</a>
+                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+            </form>
+        </div>
+        <div class="parking-image-container">
+
+            <img src="{{ asset('img/autos.png') }}" alt="Autos">
         </div>
     </div>
 </div>
+
+
+<footer class="footer">
+    © 2024 LinkinParking. Todos los derechos reservados.
+</footer>
 @endsection
