@@ -39,10 +39,17 @@
     border-color: white; /* Color del borde del botón */
 }
 
+
 .navbar-nav .nav-link {
-    color: white; /* Color del texto */
+    color: white !important; /* Color blanco */
     font-weight: 500; /* Grosor medio */
     font-size: 1rem; /* Tamaño del texto */
+    text-decoration: none; /* Sin subrayado */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffd600; /* Color amarillo al pasar el cursor */
+    text-decoration: underline; /* Subrayado al pasar el cursor */
 }
 
 /* Footer */
@@ -64,8 +71,8 @@
 .footer a:hover {
     text-decoration: underline;
 }
+</style>
 
-    </style>
 </head>
 <body>
     <div id="app">
