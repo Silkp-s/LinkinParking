@@ -19,11 +19,12 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
-/* Estilo del Navbar con Fondo */
+/* Estilo del Navbar */
 .navbar {
     background-image: linear-gradient(to right, #1565c0, #42a5f5); /* Degradado azul */
     color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+    margin-bottom: 0; /* Elimina el margen inferior */
 }
 
 .navbar a.navbar-brand {
@@ -43,33 +44,32 @@
     font-weight: 500; /* Grosor medio */
     font-size: 1rem; /* Tamaño del texto */
 }
-.navbar-nav .nav-link{
-    color: white; /* Color del texto */
+
+/* Footer */
+.footer {
+    background-color: #1565c0; /* Color del footer */
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 0; /* Elimina el margen superior */
+    font-size: 1rem; /* Texto más grande */
 }
-    /* Footer */
-    .footer {
-        background-color: #1565c0; /* Color del footer */
-        color: white;
-        text-align: center;
-        padding: 15px 0;
-        margin-top: 20px;
-        font-size: 1rem; /* Texto más grande */
-    }
 
-    .footer a {
-        color: #ffd600; /* Contraste con el fondo */
-        text-decoration: none;
-        font-weight: bold;
-    }
+.footer a {
+    color: #ffd600; /* Contraste con el fondo */
+    text-decoration: none;
+    font-weight: bold;
+}
 
-    .footer a:hover {
-        text-decoration: underline;
-    }
+.footer a:hover {
+    text-decoration: underline;
+}
+
     </style>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     LinkinParking
@@ -89,7 +89,7 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link"  href="{{ route('login') }}">{{ __('Inicia Sesión') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Inicia Sesión') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
@@ -125,8 +125,7 @@
         </main>
     </div>
     <footer class="footer">
-    © 2024 LinkinParking. Todos los derechos reservados.
-</footer>
+        © 2024 LinkinParking. Todos los derechos reservados.
+    </footer>
 </body>
-
 </html>
