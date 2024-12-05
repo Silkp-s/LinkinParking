@@ -9,14 +9,18 @@
         <img src="{{ asset('img/logo.png') }}" alt="LinkinParking Logo" style="width: 90%;"> 
       </div>
       <div style="display: flex; flex-direction: column; width: 100%; gap: 20px;">
-        <a href="#" style="display: flex; align-items: center; justify-content: center; background-color: #1e73be; color: white; text-decoration: none; font-size: 18px; padding: 15px; border-radius: 8px; cursor: pointer;">
-          <br><img src="{{ asset('img/agendar.png') }}" alt="Agendar" style="width: 30px; margin-right: 15px;"> 
-          Agendar
-        </a>
-        <a href="#" style="display: flex; align-items: center; justify-content: center; background-color: #1e73be; color: white; text-decoration: none; font-size: 18px; padding: 15px; border-radius: 8px; cursor: pointer;">
-          <img src="{{ asset('img/candado.png') }}" alt="Liberar" style="width: 30px; margin-right: 15px;">
-          Liberar
-        </a>
+<!-- Botón Agendar -->
+<a href="#" style="display: flex; align-items: center; justify-content: center; background-color: #1e73be; color: white; text-decoration: none; font-size: 18px; padding: 15px; border-radius: 8px; cursor: pointer;">
+  <img src="{{ asset('img/agendar.png') }}" alt="Agendar" style="width: 50px; height: 30px; margin-right: 1px;"> 
+  Agendar
+</a>
+
+<!-- Botón Liberar -->
+<a href="#" style="display: flex; align-items: center; justify-content: center; background-color: #1e73be; color: white; text-decoration: none; font-size: 18px; padding: 15px; border-radius: 8px; cursor: pointer;">
+  <img src="{{ asset('img/candado.png') }}" alt="Liberar" style="width: 30px; height: 30px; margin-right: 15px;">
+  Liberar
+</a>
+
       </div>
       <div style="margin-top: auto; display: flex; align-items: center; gap: 15px;">
         <img src="{{ asset('img/usuario.png') }}" alt="Usuario" style="width: 50px; height: 50px; border-radius: 50%;"> 
