@@ -20,7 +20,7 @@
       </div>
       <div style="margin-top: auto; display: flex; align-items: center; gap: 15px;">
         <img src="{{ asset('img/usuario.png') }}" alt="Usuario" style="width: 50px; height: 50px; border-radius: 50%;"> 
-        <span style="font-size: 16px; color: #333;">Nombre Empleado</span>
+        <h1 style="font-size: 16px; color: #333;">{{ Auth::user()->name ?? 'Usuario' }}</h1>
       </div>
     </div>
 
@@ -30,28 +30,4 @@
     </div>
   </div>
 </div>
-<footer class="footer">
-    © 2024 LinkinParking. Todos los derechos reservados.
-</footer>
-<style>
-/* Footer */
-    .footer {
-        background-color: #1565c0; /* Color del footer */
-        color: white;
-        text-align: center;
-        padding: 15px 0;
-        margin-top: 20px;
-        font-size: 1rem; /* Texto más grande */
-    }
-
-    .footer a {
-        color: #ffd600; /* Contraste con el fondo */
-        text-decoration: none;
-        font-weight: bold;
-    }
-
-    .footer a:hover {
-        text-decoration: underline;
-    }
-    </style>
 @endsection
