@@ -19,60 +19,70 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
-/* Estilo del Navbar */
-.navbar {
-    background-image: linear-gradient(to right, #1565c0, #42a5f5); /* Degradado azul */
-    color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
-    margin-bottom: 0; /* Elimina el margen inferior */
-}
+        html, body {
+            height: 100%; /* Asegura que ocupen todo el alto de la ventana */
+            margin: 0; /* Elimina los márgenes */
+            display: flex;
+            flex-direction: column;
+        }
 
-.navbar a.navbar-brand {
-    color: white; /* Color del texto */
-    font-size: 1.5rem; /* Tamaño del texto */
-    font-weight: bold; /* Negrita */
-    text-transform: uppercase; /* Texto en mayúsculas */
-    text-decoration: none; /* Sin subrayado */
-}
+        #app {
+            flex: 1; /* Hace que el contenido principal ocupe todo el espacio disponible */
+        }
 
-.navbar-toggler {
-    border-color: white; /* Color del borde del botón */
-}
+        /* Navbar */
+        .navbar {
+            background-image: linear-gradient(to right, #1565c0, #42a5f5);
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
 
+        .navbar a.navbar-brand {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
 
-.navbar-nav .nav-link {
-    color: white !important; /* Color blanco */
-    font-weight: 500; /* Grosor medio */
-    font-size: 1rem; /* Tamaño del texto */
-    text-decoration: none; /* Sin subrayado */
-}
+        .navbar-toggler {
+            border-color: white;
+        }
 
-.navbar-nav .nav-link:hover {
-    color: #ffd600; /* Color amarillo al pasar el cursor */
-    text-decoration: underline; /* Subrayado al pasar el cursor */
-}
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-weight: 500;
+            font-size: 1rem;
+            text-decoration: none;
+        }
 
-/* Footer */
-.footer {
-    background-color: #1565c0; /* Color del footer */
-    color: white;
-    text-align: center;
-    padding: 15px 0;
-    margin-top: 0; /* Elimina el margen superior */
-    font-size: 1rem; /* Texto más grande */
-}
+        .navbar-nav .nav-link:hover {
+            color: #ffd600;
+            text-decoration: underline;
+        }
 
-.footer a {
-    color: #ffd600; /* Contraste con el fondo */
-    text-decoration: none;
-    font-weight: bold;
-}
+        /* Footer */
+        .footer {
+            background-color: #1565c0;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 1rem;
+            position: sticky;
+            bottom: 0;
+            width: 100%;
+        }
 
-.footer a:hover {
-    text-decoration: underline;
-}
-</style>
+        .footer a {
+            color: #ffd600;
+            text-decoration: none;
+            font-weight: bold;
+        }
 
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -87,13 +97,10 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
+                    <ul class="navbar-nav mr-auto"></ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Inicia Sesión') }}</a>
