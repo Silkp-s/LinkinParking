@@ -46,6 +46,25 @@
 .navbar-nav .nav-link{
     color: white; /* Color del texto */
 }
+    /* Footer */
+    .footer {
+        background-color: #1565c0; /* Color del footer */
+        color: white;
+        text-align: center;
+        padding: 15px 0;
+        margin-top: 20px;
+        font-size: 1rem; /* Texto más grande */
+    }
+
+    .footer a {
+        color: #ffd600; /* Contraste con el fondo */
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .footer a:hover {
+        text-decoration: underline;
+    }
     </style>
 </head>
 <body>
@@ -105,6 +124,9 @@
             @yield('content')
         </main>
     </div>
+    <footer class="footer">
+    © 2024 LinkinParking. Todos los derechos reservados.
+</footer>
 </body>
 
 </html>

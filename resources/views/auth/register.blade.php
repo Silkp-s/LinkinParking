@@ -15,29 +15,6 @@ html, body {
     flex: 1; /* Toma todo el espacio disponible entre el header y el footer */
     margin-top: 20px;
 }
-
-/* Footer */
-.footer {
-    background-color: #1565c0; /* Color del footer */
-    color: white;
-    text-align: center;
-    padding: 15px 0;
-        margin-top: 20px;
-    font-size: 1rem; /* Texto más grande */
-    position: relative; /* No es fixed, para que no tape contenido */
-    bottom: 0;
-    width: 100%; /* Se asegura de ocupar todo el ancho */
-}
-
-.footer a {
-    color: #ffd600; /* Contraste con el fondo */
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.footer a:hover {
-    text-decoration: underline;
-}
 </style>
 
 <div class="container">
@@ -114,7 +91,5 @@ html, body {
     </div>
 </div>
 
-<footer class="footer">
-    © 2024 LinkinParking. Todos los derechos reservados.
-</footer>
+
 @endsection
