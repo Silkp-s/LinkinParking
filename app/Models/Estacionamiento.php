@@ -13,4 +13,8 @@ class Estacionamiento extends Model
         'lugar_matriz',
 
     ];
+public function lugares()
+    {
+        return $this->hasMany(Lugar::class);
+    }
 }

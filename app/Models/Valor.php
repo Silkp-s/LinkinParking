@@ -13,4 +13,8 @@ class Valor extends Model
         'valor_minuto',
         'cantidad_lugares'
     ];
+public function lugar()
+    {
+        return $this->belongsTo(Lugar::class);
+    }
 }
