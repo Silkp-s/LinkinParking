@@ -1,131 +1,112 @@
+@extends('layouts.app')
+@section('content')
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interfaz Responsiva</title>
-    <!-- Enlazamos Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.6.0/fabric.min.js"></script>
-
+    <title>Diseño</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body, html {
-            height: 100%;
+        .body{
+            width: 100%;
         }
-
-        .container-fluid {
-            height: 100%;
-        }
-
-        .botonera {
+        .sidebar {
             background-color: #f8f9fa;
             height: 100vh;
+        }
+        .sidebar .content {
+            height: 100%;
             display: flex;
+            margin-top:20vh;
             flex-direction: column;
-            justify-content: center;
+            justify-content: start;
             align-items: center;
-            padding-top: 20px;
         }
+        .main-content {
+           /* padding:5%;*/
+            display: flex;
+            height: 100vh;
+            background-image: url('img/fondoconcreto.jpg');
+            background-size: cover;            
+            background-position: center; 
+             background-repeat: repeat;
+             padding-left:2%;
 
-        .botonera button {
-            margin-bottom: 10px;
         }
-
-        .imagen-logo {
-            width: 100%;
+        .main-content img {
+            max-width: 100%;
             height: auto;
-            object-fit: cover;
-            
         }
-
-        .imagen-principal {
-            width: 85%;
-            height: auto;
-            position: relative;
-
-        }
-        .auto {
-            position: absolute;
-            width: 50px;
-            height: 100px;
-            background-image: url('{{ asset('img/autoarriba.png') }}');
-            background-size: cover;
-            background-position: center;
-        }
-        .contenedor-imagen {
-            position: relative;  /* Para que los elementos dentro se posicionen con respecto a este contenedor */
-        }
-        #canvas {
-            border: 1px solid #e60101;  /* Opcional: solo para mostrar el borde del canvas */
+        .divauxiliar{
+            height:250px;
+            width:150px;
+            border-right: 5px solid yellow;
+            border-left: 5px solid yellow;
+            margin-right:2px;
+            margin-left:2px;
         }
     </style>
 </head>
 <body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-1 sidebar">
+                <div class="content">
+                    <img src="logo.png" alt="Logo" class="mb-4" style="width: 150px;">
+                    <button class="btn btn-primary mb-2">Botón 1</button>
+                    <button class="btn btn-secondary">Botón 2</button>
+                </div>
+            </div>
+            <!-- Main content -->
+            <div class="col-11 main-content">
+                <div class="row">  
+                <div id ="1,1" class="divauxiliar col-1"><h1>1,1</h1></div>
+                <div id ="1,2" class="divauxiliar col-1"><h1>1,2</h1></div>
+                <div id ="1,3" class="divauxiliar col-1"><h1>1,3</h1></div>
+                <div id ="1,4" class="divauxiliar col-1"><h1>1,4</h1></div>
+                <div id ="1,5" class="divauxiliar col-1"><h1>1,5</h1></div>
+                <div id ="1,6" class="divauxiliar col-1"><h1>1,6</h1></div>
+                <div id ="1,7" class="divauxiliar col-1"><h1>1,7</h1></div>
+                <div id ="1,8" class="divauxiliar col-1"><h1>1,8</h1></div>
+                <div id ="1,9" class="divauxiliar col-1" ><h1>1,9</h1></div>
+                <div id ="1,10" class="divauxiliar col-1"><h1>1,10</h1></div>
+                <div id ="2,1 " class="divauxiliar col-1"><h1>2,1</h1></div>
+                <div id ="2,2 " class="divauxiliar col-1"><h1>2,2</h1></div>
+                <div id ="2,3 " class="divauxiliar col-1"><h1>2,3</h1></div>
+                <div id ="2,4 " class="divauxiliar col-1"><h1>2,4</h1></div>
+                <div id ="2,5 " class="divauxiliar col-1"><h1>2,5</h1></div>
+                <div id ="2,6 " class="divauxiliar col-1"><h1>2,6</h1></div>
+                <div id ="2,7 " class="divauxiliar col-1"><h1>2,7</h1></div>
+                <div id ="2,8 " class="divauxiliar col-1"><h1>2,8</h1></div>
+                <div id ="2,9 " class="divauxiliar col-1"><h1>2,9</h1></div>
+                <div id ="2,10" class="divauxiliar col-1"><h1>2,10</h1></div>
 
-    <div class="container-fluid d-flex">
-        <!-- Columna izquierda con la botonera -->
-        <div class="col-2 botonera">
-            <!-- Logo o Imagen -->
-            <img src="{{ asset('img/logo.png') }}" alt="Logo" class="img-fluid mb-4">
-            <!-- Botones -->
-            <button class="btn btn-primary w-100">Botón 1</button>
-            <button class="btn btn-secondary w-100">Botón 2</button>
-        </div>
-
-        <!-- Columna derecha con la imagen principal -->
-        <div class="col-10 p-0 d-flex justify-content-center align-items-center contenedor-imagen ">
-           <!-- <img src="{{ asset('img/parkin.png') }}" alt="Imagen Principal" class="imagen-principal">-->
-            <canvas id="canvas" width="1052" height="450"></canvas> <!-- Lienzo con el tamaño de la imagen -->
+            </div>
         </div>
     </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const lugares = @json($lugares); // Convierte el array PHP a JSON
 
-    <!-- Scripts de Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-   
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var canvas = new fabric.Canvas('canvas');  // Inicializamos el lienzo
-
-        // Cargar la imagen de la zona de estacionamiento
-        fabric.Image.fromURL('{{ asset('img/parkin.png') }}', function(img) {
-            img.set({
-                left: 0,
-                top: 0,
-                scaleX: canvas.width / img.width,  // Escalado proporcional en el eje X
-                scaleY: canvas.height / img.height  // Escalado proporcional en el eje Y
-            });
-
-            canvas.add(img);
-            
-            // Ahora, agregamos los vehículos
-            @foreach ($lugares as $lugar)
-                @if ($lugar->ocupado)
-                    var pos_x = ({{ $lugar->posx }} - 1) + (1052 / 11); // Cálculo proporcional de la posición X
-                    var pos_y = ({{ $lugar->posy }} - 1) + (450 / 2); // Cálculo proporcional de la posición Y
-                    pos_x=100;
-                    pos_y=100;
-                    console.log('Posición X:', pos_x, 'Posición Y:', pos_y);
-
-                    // Cargar la imagen del auto en esa posición
-                    fabric.Image.fromURL('{{ asset('img/autoarriba.png') }}', function(img) {
-                        img.set({
-                            left: pos_x,
-                            top: pos_y,
-                            width: 50,  // Tamaño del auto
-                            height: 50  // Tamaño del auto
-                        });
-                        
-                        // Añadir el auto al canvas
-                        canvas.add(img);
-                        canvas.renderAll();
-
-                        console.log(canvas);
-                    });
-                @endif
-            @endforeach
-        });
+document.addEventListener("DOMContentLoaded", function() {
+    lugares.forEach(lugar => {
+        if (lugar.ocupado) {
+            const id = `${lugar.posx},${lugar.posy}`;
+            const celda = document.getElementById(id);
+            if (celda) {
+                const img = document.createElement('img');
+                img.src = '/img/autoarriba.png';
+                img.alt = 'Auto';
+                celda.appendChild(img);
+            }
+        }
     });
-</script>
+});
+    </script>
 </body>
 </html>
+@endsection
