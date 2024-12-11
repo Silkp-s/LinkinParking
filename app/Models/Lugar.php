@@ -15,7 +15,7 @@ class Lugar extends Model
 
     public function vehiculo()
     {
-        return $this->belongsTo(Vehiculo::class);
+        return $this->belongsTo(Vehiculo::class,'id_vehiculo');
     }
 
     public function estacionamiento()
