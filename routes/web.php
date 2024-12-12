@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VistaEmpleadoController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\VehiculoController;
 
 
 /*
@@ -25,3 +27,20 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //rutas vistaEmpleados
 Route::get('/VistaEmpleado',[VistaEmpleadoController::class,'index'])->name('index.vistaEmpleados');
 
+//cliente
+Route::get('/clientes',[ClienteController::class,'index'])->name('index.cliente');
+Route::get('/clientenuevo',[ClienteController::class,'create'])->name('create.cliente');
+Route::get('/clienteshow/{id}',[ClienteController::class,'show'])->name('show.cliente');
+Route::get('/clientedit/{id}',[ClienteController::class,'edit'])->name('edit.cliente');
+Route::put('/cliente/{id}',[ClienteController::class,'update'])->name('update.cliente');
+Route::post('/clientestore',[ClienteController::class,'store'])->name('store.cliente');
+Route::delete('/cliente/{id}',[ClienteController::class,'destroy'])->name('destroy.cliente');
+
+//vehiculos
+Route::get('/vehiculos',[VehiculoController::class,'index'])->name('index.vehiculo');
+Route::get('/vehiculonuevo',[VehiculoController::class,'create'])->name('create.vehiculo');
+Route::get('/vehiculoshow/{id}',[VehiculoController::class,'show'])->name('show.vehiculo');
+Route::get('/vehiculodit/{id}',[VehiculoController::class,'edit'])->name('edit.vehiculo');
+Route::put('/vehiculo/{id}',[VehiculoController::class,'update'])->name('update.vehiculo');
+Route::post('/vehiculostore',[VehiculoController::class,'store'])->name('store.vehiculo');
+Route::delete('/vehiculo/{id}',[VehiculoController::class,'destroy'])->name('destroy.vehiculo');
