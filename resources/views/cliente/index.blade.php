@@ -1,37 +1,111 @@
 @extends('layouts.app')
-
 @section('content')
-<div class="container" style="max-width: 1200px; margin-top: 20px;">
-  <div style="display: flex; flex-direction: row; background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); height: 600px;">
-   
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diseño</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
-  <!-- Sidebar -->
-    <div style="width: 20%; background-color: #cceaf6; display: flex; flex-direction: column; align-items: center; padding: 20px;">
-      <div style="text-align: center; margin-bottom: 40px;">
-        <img src="{{ asset('img/logo.png') }}" alt="LinkinParking Logo" style="width: 90%;"> 
-      </div>
-      <div style="display: flex; flex-direction: column; width: 100%; gap: 20px;">
-        <!-- Botón Estimado -->
-        <button type="button" data-bs-toggle="modal" data-bs-target="#estimadoModal" style="display: flex; align-items: center; justify-content: center; background-color: #1e73be; color: white; text-decoration: none; font-size: 18px; padding: 15px; border-radius: 8px; cursor: pointer; border: none;">
-          <img src="{{ asset('img/dinerillo.png') }}" alt="Estimado" style="width: 50px; height: 30px; margin-right: 1px;"> 
-          Estimado
-        </button>
+    <style>
+        .fondo {
+            background-color: #E7F1F3;
+        }
+        .sidebar {
+            background-color: #BCE4EB;
+            height: 100vh;
+        }
+        .sidebar .content {
+            height: 100%;
+            display: flex;
+            margin-top: 20vh;
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
+        }
+        .main-content {
+            display: flex;
+            margin-top: 5%;
+            height: 70vh;
+            background-image: url('img/fondoconcreto.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: repeat;
+            padding-left: 2%;
+        }
+        .main-content img {
+            max-width: 100%;
+            height: auto;
+        }
+        .divauxiliar {
+            height: 250px;
+            width: 150px;
+            border-right: 5px solid yellow;
+            border-left: 5px solid yellow;
+            margin-right: 2px;
+            margin-left: 2px;
+        }
+        .boton {
+            width: 120px; /* Ancho del botón */
+            height: 40px; /* Alto del botón */
+            background-color: #25509D; /* Color de fondo */
+            color: white; /* Color del texto */
+            border: black;
+            border-radius: 25px; /* Bordes redondeados */
+            font-size: 16px; /* Tamaño de la fuente */
+            cursor: grab; /* Cambiar el cursor al pasar sobre el botón */
+        }
+        button:hover {
+            background-color: #09ad11 !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row fondo">
+            <!-- Sidebar -->
+            <div class="col-1 sidebar">
+                <div class="content">
+                    <img src="img/logo.png" alt="Logo" class="mb-4" style="width: 200px;">
+                    <button class="btn mb-3 boton" data-bs-toggle="modal" data-bs-target="#estimadoModal">
+                        Estimado <i class="bi bi-cash-coin"></i>
+                    </button>
+                    <button class="btn boton" data-bs-toggle="modal" data-bs-target="#pagarModal">
+                        Pagar <i class="bi bi-wallet ml-1"></i>
+                    </button>
+                </div>
+            </div>
 
-        <!-- Botón Pagar -->
-        <button type="button" data-bs-toggle="modal" data-bs-target="#pagarModal" style="display: flex; align-items: center; justify-content: center; background-color: #1e73be; color: white; text-decoration: none; font-size: 18px; padding: 15px; border-radius: 8px; cursor: pointer; border: none;">
-          <img src="{{ asset('img/dinero.png') }}" alt="Pagar" style="width: 30px; height: 30px; margin-right: 15px;">
-          Pagar
-        </button>
-      </div>
+            <!-- Main content -->
+            <div class="col-11 main-content">
+                <div class="row">
+                    <div id="1,1" class="divauxiliar col-1"><h1>1,1</h1></div>
+                    <div id="1,2" class="divauxiliar col-1"><h1>1,2</h1></div>
+                    <div id="1,3" class="divauxiliar col-1"><h1>1,3</h1></div>
+                    <div id="1,4" class="divauxiliar col-1"><h1>1,4</h1></div>
+                    <div id="1,5" class="divauxiliar col-1"><h1>1,5</h1></div>
+                    <div id="1,6" class="divauxiliar col-1"><h1>1,6</h1></div>
+                    <div id="1,7" class="divauxiliar col-1"><h1>1,7</h1></div>
+                    <div id="1,8" class="divauxiliar col-1"><h1>1,8</h1></div>
+                    <div id="1,9" class="divauxiliar col-1"><h1>1,9</h1></div>
+                    <div id="1,10" class="divauxiliar col-1"><h1>1,10</h1></div>
+                    <div id="2,1" class="divauxiliar col-1"><h1>2,1</h1></div>
+                    <div id="2,2" class="divauxiliar col-1"><h1>2,2</h1></div>
+                    <div id="2,3" class="divauxiliar col-1"><h1>2,3</h1></div>
+                    <div id="2,4" class="divauxiliar col-1"><h1>2,4</h1></div>
+                    <div id="2,5" class="divauxiliar col-1"><h1>2,5</h1></div>
+                    <div id="2,6" class="divauxiliar col-1"><h1>2,6</h1></div>
+                    <div id="2,7" class="divauxiliar col-1"><h1>2,7</h1></div>
+                    <div id="2,8" class="divauxiliar col-1"><h1>2,8</h1></div>
+                    <div id="2,9" class="divauxiliar col-1"><h1>2,9</h1></div>
+                    <div id="2,10" class="divauxiliar col-1"><h1>2,10</h1></div>
+                </div>
+            </div>
+        </div>
     </div>
-    
-
-    <!-- Map Container -->
-    <div style="width: 80%; display: flex; align-items: center; justify-content: center; padding: 20px;">
-      <img src="{{ asset('img/estacionamiento.png') }}" alt="Estacionamiento" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"> 
-    </div>
-  </div>
-</div>
 
 <!-- Modal Estimado -->
 <div class="modal fade" id="estimadoModal" tabindex="-1" aria-labelledby="estimadoModalLabel" aria-hidden="true">
@@ -72,22 +146,9 @@
     </div>
   </div>
 </div>
-<!-- Modal Lugar -->
-<div class="modal fade" id="lugarModal" tabindex="-1" aria-labelledby="lugarModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content" style="background-color: #BBDEFB; color: black;">
-      <div class="modal-header">
-        <h5 class="modal-title" id="lugarModalLabel">Lugar Estacionamiento</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-        <img src="{{ asset('img/logo.png') }}" alt="LinkinParking Logo" style="width: 150px; margin-bottom: 20px;">
-        <p>Su vehiculo fue aparcado en el lugar ************</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Aceptar</button>
-      </div>
-    </div>
-  </div>
-</div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
 @endsection
