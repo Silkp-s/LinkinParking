@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VistaEmpleadoController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\VehiculoController;
+use App\Http\Controllers\ParkingController;
 
 
 /*
@@ -31,6 +32,11 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //rutas vistaEmpleados
 Route::get('/VistaEmpleado',[VistaEmpleadoController::class,'index'])->name('index.vistaEmpleados');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/parking/estimate', [ParkingController::class, 'calculateEstimate'])->name('parking.estimate');
+    Route::post('/parking/payment', [ParkingController::class, 'processPayment'])->name('parking.payment');
+});
 
 //cliente
 Route::get('/clientes',[ClienteController::class,'index'])->name('index.cliente');

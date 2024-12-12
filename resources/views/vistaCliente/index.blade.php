@@ -115,9 +115,9 @@
         <h5 class="modal-title" id="estimadoModalLabel">Precio Estimado</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body text-center">
+      <div class="modal-body text-center" id="estimateModalBody">
         <img src="{{ asset('img/logo.png') }}" alt="LinkinParking Logo" style="width: 150px; margin-bottom: 20px;">
-        <p>El precio estimado a cancelar es de ****</p>
+        <p id="estimateText">Calculando el precio estimado...</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-success" data-bs-dismiss="modal">Aceptar</button>
@@ -134,13 +134,12 @@
         <h5 class="modal-title" id="pagarModalLabel">Confirmar Pago</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body text-center">
+      <div class="modal-body text-center" id="paymentModalBody">
         <img src="{{ asset('img/logo.png') }}" alt="LinkinParking Logo" style="width: 150px; margin-bottom: 20px;">
-        <p>¿Debe cancelar la cantidad de $*******?</p>
-        <p>Al presionar 'Aceptar' se realizará el cobro.</p>
+        <p id="paymentText">Procesando el pago...</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Aceptar</button>
+        <button type="button" class="btn btn-success" id="confirmPaymentButton">Aceptar</button>
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
       </div>
     </div>
@@ -149,6 +148,46 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const estimateModal = document.getElementById('estimadoModal');
+        const paymentModal = document.getElementById('pagarModal');
+        const estimateText = document.getElementById('estimateText');
+        const paymentText = document.getElementById('paymentText');
+        const confirmPaymentButton = document.getElementById('confirmPaymentButton');
+
+        // Mostrar precio estimado
+        estimateModal.addEventListener('show.bs.modal', () => {
+            fetch('{{ route('parking.estimate') }}')
+                .then(response => response.json())
+                .then(data => {
+                    estimateText.textContent = `El precio estimado a cancelar es de $${data.precioEstimado}`;
+                })
+                .catch(() => {
+                    estimateText.textContent = 'Error al calcular el precio estimado.';
+                });
+        });
+
+        // Procesar pago
+        confirmPaymentButton.addEventListener('click', () => {
+            fetch('{{ route('parking.payment') }}', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    paymentText.textContent = `El pago de $${data.precioFinal} fue realizado exitosamente.`;
+                })
+                .catch(() => {
+                    paymentText.textContent = 'Error al procesar el pago.';
+                });
+        });
+    });
+</script>
+
 </body>
 </html>
 @endsection
