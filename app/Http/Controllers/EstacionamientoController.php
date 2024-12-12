@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Estacionamiento;
+use App\Models\Lugar;
 use Illuminate\Http\Request;
 
 class EstacionamientoController extends Controller
@@ -13,7 +14,8 @@ class EstacionamientoController extends Controller
      */
     public function index()
     {
-        //
+        $estacionamientos = Estacionamiento::with('lugar')->get();
+        return view('estacionamientos.index', compact('estacionamientos'));
     }
 
     /**
@@ -23,7 +25,8 @@ class EstacionamientoController extends Controller
      */
     public function create()
     {
-        //
+        $lugares = Lugar::all(); // Asegúrate de tener el modelo Lugar definido.
+        return view('estacionamientos.create', compact('lugares'));
     }
 
     /**
@@ -34,7 +37,13 @@ class EstacionamientoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'lugar_matriz' => 'required|varchar|max:255',
+            'id_lugar' => 'required|exists:lugars,id',
+        ]);
+
+        Estacionamiento::create($request->all());
+        return redirect()->route('estacionamientos.index')->with('success', 'Estacionamiento creado con éxito.');
     }
 
     /**
@@ -54,9 +63,10 @@ class EstacionamientoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Estacionamiento $estacionamiento)
     {
-        //
+        $lugares = Lugar::all();
+        return view('estacionamientos.edit', compact('estacionamiento', 'lugares'));
     }
 
     /**
@@ -66,9 +76,15 @@ class EstacionamientoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Estacionamiento $estacionamiento)
     {
-        //
+        $request->validate([
+            'lugar_matriz' => 'required|string',
+            'id_lugar' => 'required|exists:lugars,id',
+        ]);
+
+        $estacionamiento->update($request->all());
+        return redirect()->route('estacionamientos.index')->with('success', 'Estacionamiento actualizado con éxito.');
     }
 
     /**
@@ -77,8 +93,11 @@ class EstacionamientoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Estacionamiento $estacionamiento)
     {
-        //
+        $estacionamiento->delete();
+        $estacionamiento = Estacionamiento::findOrFail($id);
+        return redirect()->route('estacionamientos.index')->with('success', 'Estacionamiento eliminado con éxito.');
+
     }
 }

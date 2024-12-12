@@ -9,6 +9,8 @@ class Lugar extends Model
 {
     use HasFactory;
 
+    protected $table = "lugars";
+    
     protected $fillable = [
         'lugar_matriz'
     ];
@@ -25,6 +27,11 @@ class Lugar extends Model
 
     public function valor()
     {
-        return $this->hasOne(Valor::class);
+        return $this->belongsTo(Valor::class,'valor_id', 'id');
+    }
+
+        public function reservaciones()
+    {
+        return $this->hasMany(Reservacion::class);
     }
 }

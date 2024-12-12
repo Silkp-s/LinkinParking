@@ -18,4 +18,9 @@ class Cliente extends Model
     {
         return $this->hasMany(Vehiculo::class);
     }
+
+    public function reservaciones()
+{
+    return $this->hasMany(Reservacion::class);
+}
 }

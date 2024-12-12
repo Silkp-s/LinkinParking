@@ -106,29 +106,16 @@
         align-items: center;
         position: relative;
     }
-    /* Footer */
-    .footer {
-        background-color: #1565c0; /* Color del footer */
-        color: white;
-        text-align: center;
-        padding: 15px 0;
-        margin-top: 20px;
-        font-size: 1rem; /* Texto más grande */
-    }
 
-    .footer a {
-        color: #ffd600; /* Contraste con el fondo */
-        text-decoration: none;
-        font-weight: bold;
-    }
-
-    .footer a:hover {
-        text-decoration: underline;
-    }
 </style>
 
 <div class="login-wrapper">
+
     <a href="{{ route('index.vistaEmpleados') }}" class="ml-4  text-sm text-gray-700 dark:text-gray-500 underline">vistaEmpleadoTset</a>
+    <a href="{{ route('index.estacionamiento') }}" >estacionamiento</a>
+    <a href="{{ route('index.lugars') }}" >Lugares brr</a>
+    <a href="{{ route('valors.index') }}" >Ver Valores</a>
+
 
     <div class="login-container">
         <div class="form-container">
@@ -164,7 +151,5 @@
 </div>
 
 
-<footer class="footer">
-    © 2024 LinkinParking. Todos los derechos reservados.
-</footer>
+
 @endsection

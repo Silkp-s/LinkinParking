@@ -10,7 +10,9 @@ class Vehiculo extends Model
     use HasFactory;
 
     protected $fillable = [
-        'patente'
+        'patente',
+        'id_cliente',  // Agregar el campo 'id_cliente'
+
     ];
 
     public function cliente()
@@ -23,4 +25,9 @@ class Vehiculo extends Model
     {
         return $this->hasOne(Lugar::class);
     }
+
+    public function reservaciones()
+{
+    return $this->hasMany(Reservacion::class);
+}
 }

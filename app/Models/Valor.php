@@ -17,4 +17,10 @@ public function lugar()
     {
         return $this->belongsTo(Lugar::class);
     }
+    
+public function valor()
+    {
+        return $this->belongsTo(Valor::class, 'valor_id', 'id'); // 'valor_id' es la clave foránea en 'lugares'
+    }
+
 }

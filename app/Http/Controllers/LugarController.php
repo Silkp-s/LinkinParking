@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lugar;
+use App\Models\Vehiculo;
+use App\Models\Valor;
 use Illuminate\Http\Request;
 
 class LugarController extends Controller
@@ -13,7 +16,8 @@ class LugarController extends Controller
      */
     public function index()
     {
-        //
+        $lugars = Lugar::with(['vehiculo', 'valors'])->get();
+        return view('lugars.index', compact('lugars'));
     }
 
     /**
@@ -23,7 +27,9 @@ class LugarController extends Controller
      */
     public function create()
     {
-        //
+        $vehiculos = Vehiculo::all();
+        $valores = Valor::all();
+        return view('lugars.create', compact('vehiculos', 'valores'));
     }
 
     /**
@@ -34,7 +40,15 @@ class LugarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'lugar_matriz' => 'required|varchar|max:255',
+            'posx' => 'required|integer|max:11',
+            'posy' => 'required|integer|max:11',
+            'id_vehiculo' => 'required|exists:vehiculos,id',
+            'id_valors' => 'nullable|exists:valors,id',
+            'ocupado' => 'required|boolean',
+        ]);
+        return redirect()->route('lugars.index')->with('success', 'Lugar creado con éxito.');
     }
 
     /**
@@ -56,7 +70,7 @@ class LugarController extends Controller
      */
     public function edit($id)
     {
-        //
+        $client = Lugar::findOrFail($id);
     }
 
     /**
@@ -68,7 +82,17 @@ class LugarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $request->validate([
+            'lugar_matriz' => 'required|varchar|max:255',
+            'posx' => 'required|integer|max:11',
+            'posy' => 'required|integer|max:11',
+            'id_vehiculo' => 'required|exists:vehiculos,id',
+            'id_valors' => 'nullable|exists:valors,id',
+            'ocupado' => 'required|boolean',
+        ]);
+        $lugar->update($request->all());
+        return redirect()->route('lugars.index')->with('success', 'Lugar actualizado con éxito.');
     }
 
     /**
@@ -79,6 +103,8 @@ class LugarController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $lugar->delete();
+        return redirect()->route('lugars.index')->with('success', 'Lugar eliminado con éxito.');
+    
     }
 }

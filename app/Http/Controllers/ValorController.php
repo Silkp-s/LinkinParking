@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Valor;
+use App\Models\Estacionamiento;
 use Illuminate\Http\Request;
 
 class ValorController extends Controller
@@ -13,7 +14,8 @@ class ValorController extends Controller
      */
     public function index()
     {
-        //
+        $valors = Valor::all();
+        return view('valors.index', compact('valors'));
     }
 
     /**
@@ -23,7 +25,8 @@ class ValorController extends Controller
      */
     public function create()
     {
-        //
+        $estacionamientos = Estacionamiento::all(); 
+        return view('valors.create', compact('estacionamientos'));
     }
 
     /**
@@ -34,7 +37,15 @@ class ValorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'id_estacionamiento' => 'required|exists:estacionamientos,id',
+            'valor_minuto' => 'required|integer',
+            'cantidad_lugares' => 'required|integer',
+        ]);
+
+        Valor::create($request->all());
+        
+        return redirect()->route('valors.index')->with('success', 'Valor creado con éxito.');
     }
 
     /**
@@ -54,9 +65,10 @@ class ValorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Valor $valor)
     {
-        //
+        $estacionamientos = Estacionamiento::all(); // Obtener estacionamientos
+        return view('valors.edit', compact('valor', 'estacionamientos'));
     }
 
     /**
@@ -66,9 +78,17 @@ class ValorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Valor $valor)
     {
-        //
+        $request->validate([
+            'id_estacionamiento' => 'required|exists:estacionamientos,id',
+            'valor_minuto' => 'required|integer',
+            'cantidad_lugares' => 'required|integer',
+        ]);
+
+        $valor->update($request->all());
+
+        return redirect()->route('valors.index')->with('success', 'Valor actualizado con éxito.');
     }
 
     /**
@@ -77,8 +97,9 @@ class ValorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Valor $valor)
     {
-        //
+        $valor->delete();
+        return redirect()->route('valors.index')->with('success', 'Valor eliminado con éxito.');
     }
 }
