@@ -111,8 +111,6 @@
 
 <div class="login-wrapper">
 
-    <a href="{{ route('index.vistaEmpleados') }}" class="ml-4  text-sm text-gray-700 dark:text-gray-500 underline">vistaEmpleadoTset</a>
-
     <div class="login-container">
         <div class="form-container">
             <img src="{{ asset('img/logo.png') }}" alt="Logo">
