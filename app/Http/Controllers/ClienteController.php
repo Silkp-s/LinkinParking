@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Cliente;
 
 use Illuminate\Http\Request;
 
@@ -13,7 +14,8 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        //
+        $cliente = Cliente::paginate(5);
+        return view('cliente.index', compact('cliente'));
     }
 
     /**
@@ -23,7 +25,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('cliente.create');
     }
 
     /**
@@ -34,7 +36,15 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'rut' => 'required|string|unique:clientes,rut|max:9',
+        ]);
+        Cliente::create([
+            'nombre' => $request->nombre,
+            'rut' => $request->rut
+        ]);
+        return redirect()->route('index.cliente')->with('success','Cliente creado con exitosamente');
     }
 
     /**
@@ -45,7 +55,8 @@ class ClienteController extends Controller
      */
     public function show($id)
     {
-        //
+        $cliente = Cliente::findOrFail($id);
+        return view('cliente.show', compact('cliente'));
     }
 
     /**
@@ -56,7 +67,8 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cliente = Cliente::findOrFail($id);
+        return view('cliente.edit', compact('cliente'));
     }
 
     /**
@@ -68,7 +80,14 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cliente = Cliente::findOrFail($id);
+        
+        $cliente->update([
+            'nombre' => $request->nombre,
+            'rut' => $request->rut
+        ]);
+        return redirect()->route('index.cliente')->with('success', 'Cliente actualizado');
+
     }
 
     /**
@@ -79,6 +98,8 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cliente = Cliente::findOrFail($id);
+        $cliente->delete();
+        return redirect()->route('index.cliente')->with('success','Cliente eliminado  exitosamente');
     }
 }

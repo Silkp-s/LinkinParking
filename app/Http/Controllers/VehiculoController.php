@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Vehiculo;
+use App\Models\Cliente;
+
 
 use Illuminate\Http\Request;
 
@@ -13,7 +16,8 @@ class VehiculoController extends Controller
      */
     public function index()
     {
-        //
+        $vehiculo = Vehiculo::paginate(5);
+        return view('vehiculo.index', compact('vehiculo'));
     }
 
     /**
@@ -23,7 +27,8 @@ class VehiculoController extends Controller
      */
     public function create()
     {
-        //
+        $cliente = Cliente::all();
+        return view('vehiculo.create', compact('cliente'));
     }
 
     /**
@@ -34,8 +39,19 @@ class VehiculoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'patente' => 'required|string|max:6',
+            'id_cliente' => 'required|exists:clientes,id',
+        ]);
+    
+        $vehiculo = Vehiculo::create([
+            'patente' => $request->patente,
+            'id_cliente' => $request->id_cliente
+        ]);
+    
+        return redirect()->route('index.vehiculo')->with('success', 'Vehiculo creado exitosamente');
     }
+  
 
     /**
      * Display the specified resource.
@@ -45,7 +61,8 @@ class VehiculoController extends Controller
      */
     public function show($id)
     {
-        //
+        $vehiculo = Vehiculo::with(['cliente'])->findOrFail($id);
+        return view('vehiculo.show', compact('vehiculo'));
     }
 
     /**
@@ -56,7 +73,10 @@ class VehiculoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cliente = Cliente::all();
+        $vehiculo = Vehiculo::findOrFail($id);
+        return view('vehiculo.edit', compact('vehiculo'));
+
     }
 
     /**
@@ -68,7 +88,12 @@ class VehiculoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $vehiculo = Vehiculo::findOrFail($id);
+
+        $vehiculo->update([
+            'patente' => $request->patente
+        ]);
+        return redirect()->route('index.vehiculo')->with('success','Vehiculo editado con exitosamente'); 
     }
 
     /**
@@ -79,6 +104,10 @@ class VehiculoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $vehiculo = Vehiculo::with(['cliente'])->findOrFail($id);
+        //$vehiculo->clientes()->detach();
+        $vehiculo->delete();
+
+        return redirect()->route('index.vehiculo')->with('success','Vehiculo eliminado exitosamente'); 
     }
 }
