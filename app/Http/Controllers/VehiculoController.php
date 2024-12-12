@@ -16,7 +16,7 @@ class VehiculoController extends Controller
      */
     public function index()
     {
-        $vehiculo = Vehiculo::with(['cliente'])->paginate(5);
+        $vehiculo = Vehiculo::paginate(5);
         return view('vehiculo.index', compact('vehiculo'));
     }
 
@@ -51,7 +51,7 @@ class VehiculoController extends Controller
     
         return redirect()->route('index.vehiculo')->with('success', 'Vehiculo creado exitosamente');
     }
-    
+  
 
     /**
      * Display the specified resource.
@@ -73,8 +73,8 @@ class VehiculoController extends Controller
      */
     public function edit($id)
     {
-        $vehiculo = Vehiculo::with(['cliente'])->findOrFail($id);
-        $clientes = Cliente::all();
+        $cliente = Cliente::all();
+        $vehiculo = Vehiculo::findOrFail($id);
         return view('vehiculo.edit', compact('vehiculo'));
 
     }
@@ -90,7 +90,9 @@ class VehiculoController extends Controller
     {
         $vehiculo = Vehiculo::findOrFail($id);
 
-        $vehiculo->clientes()->sync($request->clientes);
+        $vehiculo->update([
+            'patente' => $request->patente
+        ]);
         return redirect()->route('index.vehiculo')->with('success','Vehiculo editado con exitosamente'); 
     }
 

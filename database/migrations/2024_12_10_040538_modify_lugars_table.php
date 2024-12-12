@@ -14,7 +14,6 @@ class ModifyLugarsTable extends Migration
     public function up()
     {
         Schema::table('lugars', function (Blueprint $table) {
-            $table->boolean('ocupado');
         });
     }
 
