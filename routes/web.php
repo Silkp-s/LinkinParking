@@ -35,7 +35,7 @@ Route::post('/reservaciones', [VistaEmpleadoController::class, 'store'])->name('
 Route::post('/lugar-simonweco', [VistaEmpleadoController::class, 'getLugarDetalles'])->name('detalles.lugar');
 Route::delete('/eliminar-reservacion', [VistaEmpleadoController::class, 'eliminarReservacion'])->name('eliminar.reservacion');
 
-Route::get('/vistacliente',[VistaClienteController::class,'index'])->name('index.vistaCliente');
+Route::get('/vistaCliente',[VistaClienteController::class,'index'])->name('index.vistaCliente');
 Route::post('/reservaciones', [VistaClienteController::class, 'store'])->name('store.reservacion');
 Route::post('/lugar-simonweco', [VistaClienteController::class, 'getLugarDetalles'])->name('detalles.lugar');
 Route::delete('/eliminar-reservacion', [VistaClienteController::class, 'eliminarReservacion'])->name('eliminar.reservacion');
