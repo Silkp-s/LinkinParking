@@ -12,4 +12,19 @@ class Lugar extends Model
     protected $fillable = [
         'lugar_matriz'
     ];
+
+    public function vehiculo()
+    {
+        return $this->belongsTo(Vehiculo::class,'id_vehiculo');
+    }
+
+    public function estacionamiento()
+    {
+        return $this->belongsTo(Estacionamiento::class);
+    }
+
+    public function valor()
+    {
+        return $this->hasOne(Valor::class);
+    }
 }

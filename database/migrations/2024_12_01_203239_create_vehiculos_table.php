@@ -18,7 +18,7 @@ class CreateVehiculosTable extends Migration
             $table->string('patente');
             $table->unsignedBigInteger('id_cliente');
             $table->timestamps();
-            $table->foreign('id_cliente')->references('id')->on('cines');
+            $table->foreign('id_cliente')->references('id')->on('clientes');
         });
     }
 

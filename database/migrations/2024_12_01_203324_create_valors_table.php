@@ -17,7 +17,7 @@ class CreateValorsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_estacionamiento');
             $table->integer('valor_minuto');
-            $table->interger('cantidad_lugares');
+            $table->integer('cantidad_lugares');
             $table->timestamps();
             $table->foreign('id_estacionamiento')->references('id')->on('estacionamientos');
         });

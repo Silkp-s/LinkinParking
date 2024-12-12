@@ -13,4 +13,9 @@ class Cliente extends Model
         'nombre',
         'rut'
     ];
+
+    public function vehiculos()
+    {
+        return $this->hasMany(Vehiculo::class);
+    }
 }

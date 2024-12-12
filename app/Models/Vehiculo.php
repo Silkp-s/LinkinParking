@@ -12,4 +12,15 @@ class Vehiculo extends Model
     protected $fillable = [
         'patente'
     ];
+
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class);
+    }
+    
+
+    public function lugar()
+    {
+        return $this->hasOne(Lugar::class);
+    }
 }

@@ -18,8 +18,6 @@ class CreateEstacionamientosTable extends Migration
             $table->string('lugar_matriz');
             $table->unsignedBigInteger('id_lugar');
             $table->timestamps();
-            $table->foreign('id_lugar')->references('id')->on('lugars');
-
         });
     }
 
