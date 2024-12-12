@@ -19,7 +19,7 @@ class CreateReservacionesTable extends Migration
             $table->unsignedBigInteger('auto_id');
             $table->unsignedBigInteger('cliente_id');
             $table->dateTime('fecha_inicio');
-            $table->dateTime('fecha_fin');
+            $table->dateTime('fecha_fin')->nullable();
             $table->timestamps();
 
             $table->foreign('lugar_id')->references('id')->on('lugars')->onDelete('cascade');

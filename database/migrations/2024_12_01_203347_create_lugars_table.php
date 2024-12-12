@@ -18,9 +18,9 @@ class CreateLugarsTable extends Migration
             $table->string('lugar_matriz');
             $table->integer('posx');
             $table->integer('posy');
-            $table->unsignedBigInteger('id_vehiculo');
+            $table->unsignedBigInteger('id_vehiculo')->nullable();
             $table->unsignedBigInteger('id_valors')->nullable();
-            $table->bool('ocupado');
+            $table->boolean('ocupado');
             $table->timestamps();
             $table->foreign('id_vehiculo')->references('id')->on('vehiculos');
             $table->foreign('id_valors')->references('id')->on('valors');
