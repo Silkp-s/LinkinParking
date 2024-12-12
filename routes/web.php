@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VistaEmpleadoController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\VehiculoController;
+use App\Http\Controllers\VistaClienteController;
+
 
 
 /*
@@ -20,6 +22,9 @@ use App\Http\Controllers\VehiculoController;
 Route::get('/', function () {
     return view('auth.login');
 });
+Route::get('/clientes', function () {
+    return view('cliente.index');
+});
 
 Auth::routes();
 
@@ -30,6 +35,10 @@ Route::post('/reservaciones', [VistaEmpleadoController::class, 'store'])->name('
 Route::post('/lugar-simonweco', [VistaEmpleadoController::class, 'getLugarDetalles'])->name('detalles.lugar');
 Route::delete('/eliminar-reservacion', [VistaEmpleadoController::class, 'eliminarReservacion'])->name('eliminar.reservacion');
 
+Route::get('/vistacliente',[VistaClienteController::class,'index'])->name('index.vistaCliente');
+Route::post('/reservaciones', [VistaClienteController::class, 'store'])->name('store.reservacion');
+Route::post('/lugar-simonweco', [VistaClienteController::class, 'getLugarDetalles'])->name('detalles.lugar');
+Route::delete('/eliminar-reservacion', [VistaClienteController::class, 'eliminarReservacion'])->name('eliminar.reservacion');
 //cliente
 Route::get('/clientes',[ClienteController::class,'index'])->name('index.cliente');
 Route::get('/clientenuevo',[ClienteController::class,'create'])->name('create.cliente');
