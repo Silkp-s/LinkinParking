@@ -2,7 +2,7 @@
 @section('title','cliente')
 
 @section('content')
-<h1>Clientes</h1>
+<h1 class="text-center mb-4">Clientes</h1>
 <a href="{{ route('create.cliente') }}" class="btn btn-custom mb-3">Agregar Cliente</a>
 <table class="table table-dark table-striped">
     <thead>
