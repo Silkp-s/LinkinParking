@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VistaEmpleadoController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\VehiculoController;
-use App\Http\Controllers\ParkingController;
+use App\Http\Controllers\VistaClienteController;
+
 
 
 /*
@@ -24,9 +25,7 @@ Route::get('/', function () {
 Route::get('/clientes', function () {
     return view('cliente.index');
 });
-Route::get('/vistaCliente', function () {
-    return view('vistaCliente.index');
-});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -36,11 +35,10 @@ Route::post('/reservaciones', [VistaEmpleadoController::class, 'store'])->name('
 Route::post('/lugar-simonweco', [VistaEmpleadoController::class, 'getLugarDetalles'])->name('detalles.lugar');
 Route::delete('/eliminar-reservacion', [VistaEmpleadoController::class, 'eliminarReservacion'])->name('eliminar.reservacion');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/parking/estimate', [ParkingController::class, 'calculateEstimate'])->name('parking.estimate');
-    Route::post('/parking/payment', [ParkingController::class, 'processPayment'])->name('parking.payment');
-});
-
+Route::get('/vistacliente',[VistaClienteController::class,'index'])->name('index.vistaCliente');
+Route::post('/reservaciones', [VistaClienteController::class, 'store'])->name('store.reservacion');
+Route::post('/lugar-simonweco', [VistaClienteController::class, 'getLugarDetalles'])->name('detalles.lugar');
+Route::delete('/eliminar-reservacion', [VistaClienteController::class, 'eliminarReservacion'])->name('eliminar.reservacion');
 //cliente
 Route::get('/clientes',[ClienteController::class,'index'])->name('index.cliente');
 Route::get('/clientenuevo',[ClienteController::class,'create'])->name('create.cliente');
