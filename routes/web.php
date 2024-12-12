@@ -32,6 +32,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //rutas vistaEmpleados
 Route::get('/VistaEmpleado',[VistaEmpleadoController::class,'index'])->name('index.vistaEmpleados');
+Route::post('/reservaciones', [VistaEmpleadoController::class, 'store'])->name('store.reservacion');
+Route::post('/lugar-simonweco', [VistaEmpleadoController::class, 'getLugarDetalles'])->name('detalles.lugar');
+Route::delete('/eliminar-reservacion', [VistaEmpleadoController::class, 'eliminarReservacion'])->name('eliminar.reservacion');
 
 Route::middleware('auth')->group(function () {
     Route::get('/parking/estimate', [ParkingController::class, 'calculateEstimate'])->name('parking.estimate');
