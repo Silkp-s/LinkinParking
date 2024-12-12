@@ -44,28 +44,17 @@ class VistaEmpleadoController extends Controller
     }
 
     public function getLugarDetalles(Request $request){
-        \Log::info('Datos recibidos:', $request->all());
-        $lugarid = $request->input('lugar_id');
-        \Log::info('Lugar ID recibido:', ['lugar_id' => $lugarid]);
-        
+
+        $lugarid = $request->input('lugar_id');      
         $lugar = Lugar::with(['reservaciones' => function ($query) {
             $query->whereNull('fecha_fin'); 
-        }, 'reservaciones.auto'])->find($lugarid);
-        \Log::info('Lugar ID recibido:', ['lugar' => $lugar]);
-        $reservacion = $lugar->reservaciones->first();
-        \Log::info('Lugar ID recibido:', ['reservacion' => $reservacion]);
+        }, 'reservaciones.auto'])->find($lugarid);     
+        $reservacion = $lugar->reservaciones->first();    
         $vehiculo=$reservacion->auto;
-        \Log::info('Lugar ID recibido:', ['vehiculo' => $vehiculo]);
-    
-
         $tiempoOcupacion =now()->diffInMinutes($reservacion->fecha_inicio);
-
         $valor = Valor::findOrFail($lugar->id_valors)->first();
-        $valorporminuto = $valor->valor_minuto;
-        \Log::info('Lugar ID recibido:', ['valorporminuto' => $valorporminuto]);
+        $valorporminuto = $valor->valor_minuto;  
         $monto=$valorporminuto*$tiempoOcupacion;
-        \Log::info('el simon es maricon', ['monto' => $monto]);
-
         return response()->json([
             'vehiculo'=> $vehiculo->patente,
             'tiempo_ocupacion'=>$tiempoOcupacion,
@@ -79,13 +68,9 @@ class VistaEmpleadoController extends Controller
     $request->validate([
         'lugar_id' => 'required|integer|exists:lugars,id',
     ]);
-    \Log::info('Reservación encontrada:', ['request' => $request]);
-    \Log::info('Reservación encontrada:', ['lugarid' => $request->lugar_id]);
-    // Buscar la reservación activa para el lugar
     $reservacion = Reservacion::where('lugar_id', $request->lugar_id)
         ->whereNull('fecha_fin')
         ->first();
-\Log::info('Reservación encontrada:', ['reservacion' => $reservacion]);
     // Eliminar la reservación
     if($reservacion){
     $reservacion->delete();

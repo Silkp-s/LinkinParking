@@ -18,7 +18,7 @@ class CreateLugarsTable extends Migration
             $table->string('lugar_matriz');
             $table->integer('posx');
             $table->integer('posy');
-            $table->unsignedBigInteger('id_vehiculo');
+            $table->unsignedBigInteger('id_vehiculo')->nullable();
             $table->unsignedBigInteger('id_valors')->nullable();
             $table->boolean('ocupado');
             $table->timestamps();

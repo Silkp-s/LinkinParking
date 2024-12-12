@@ -16,7 +16,7 @@ class CreateEstacionamientosTable extends Migration
         Schema::create('estacionamientos', function (Blueprint $table) {
             $table->id();
             $table->string('lugar_matriz');
-            $table->unsignedBigInteger('id_lugar');
+            $table->unsignedBigInteger('id_lugar')->nullable();
             $table->timestamps();
         });
     }
