@@ -10,6 +10,8 @@
             <th>ID</th>
             <th>Patente</th>
             <th>Cliente ID </th>
+            <th>Nombre</th>
+            <th>RUT</th>
         </tr>
     </thead>
     <tbody>
@@ -17,9 +19,18 @@
             <tr>
                 <td>{{ $vehiculos->id }}</td>
                 <td>{{ $vehiculos->patente }}</td>
-                <td> @if ($vehiculos->cliente) {{ $vehiculos->cliente->id }} 
-                    @else Sin cliente 
-                    @endif </td>              
+                <td> @if ($vehiculos->cliente)
+                     {{ $vehiculos->cliente->id }} 
+                    @endif
+                 </td>     
+                 <td> @if ($vehiculos->cliente)
+                     {{ $vehiculos->cliente->nombre }} 
+                    @endif
+                 </td>    
+                 <td> @if ($vehiculos->cliente)
+                     {{ $vehiculos->cliente->rut }} 
+                    @endif
+                 </td>             
                 <td>
                     <a href="{{ route('show.vehiculo', $vehiculos->id) }}" class="btn btn-sm btn-primary">Ver</a>
                     <a href="{{ route('edit.vehiculo', $vehiculos->id) }}" class="btn btn-sm btn-warning">Editar</a>
