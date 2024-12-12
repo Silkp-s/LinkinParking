@@ -80,6 +80,21 @@
                     <img src="img/logo.png" alt="Logo" class="mb-4" style="width: 200px;">
                     <button class="btn  mb-3 boton"data-bs-toggle="modal" data-bs-target="#agendar">Agendar <i class="bi bi-journal-check"></i></button>
                     <button class="btn  boton"data-bs-toggle="modal" data-bs-target="#liberar">Liberar <i class="bi bi-unlock ml-1"></i></button>  
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
                     <img src="{{ asset('img/usuario.png') }}" alt="Usuario" style="width: 50px; height: 50px; border-radius: 50%;"> 
                     <h1 style="font-size: 16px; color: #333;">{{ Auth::user()->name ?? 'Usuario' }}</h1>        
                 </div>
@@ -89,7 +104,7 @@
     <div class="modal-dialog">
     <div class="modal-content" style="background-color: #BBDEFB; color: black;">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Hola!</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Bienvenido al modulo de Reservaciones!</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
